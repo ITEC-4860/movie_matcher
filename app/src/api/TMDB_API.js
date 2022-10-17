@@ -101,39 +101,65 @@ export function MovieImage(movieId) {
 }
 
 /* TV Show Specific TMDB API Call Functions */
-export async function tvById(tvId) {
-    var data = await fetch('https://api.themoviedb.org/3/tv/' + tvId + '?api_key=' + API_KEY);
-    var show = await data.json();
+export function TvById(tvId) {
+    const [show, setShow] = React.useState([]);
+    React.useEffect(() => {
+        fetch('https://api.themoviedb.org/3/tv/' + tvId + '?api_key=' + API_KEY)
+            .then((response) => response.json())
+            .then((responseJson => {
+                setShow(responseJson)
+            }))
+    }, []);
     return show;
 }
 
-export async function getTvCastCrew(tvId) {
-    var data = await fetch('https://api.themoviedb.org/3/tv/' + tvId + '/credits?api_key=' + API_KEY);
-    var castCrew = await data.json();
+export function GetTvCastCrew(tvId) {
+    const [castCrew, setCastCrew] = React.useState([]);
+    React.useEffect(() => {
+        fetch('https://api.themoviedb.org/3/tv/' + tvId + '/credits?api_key=' + API_KEY)
+            .then((response) => response.json())
+            .then((responseJson => {
+                setCastCrew(responseJson);
+            }))
+    }, []);
     return castCrew;
 }
 
-export async function searchTv(query) {
+export function SearchTv(query) {
     var tvQuery = SearchFormatter(query);
-    var data = await fetch('https://api.themoviedb.org/3/search/tv?api_key=' + API_KEY + '&query=' + tvQuery + '&include_adult=false');
-    var results = await data.json();
+    const [results, setResults] = React.useState([]);
+    React.useEffect(() => {
+        fetch('https://api.themoviedb.org/3/search/tv?api_key=' + API_KEY + '&query=' + tvQuery + '&include_adult=false')
+            .then((response) => response.json())
+            .then((responseJson => {
+                setResults(responseJson);
+            }))
+    }, []);
     return results;
 }
 
-export async function tvByMultiFilter(genreQuery, year, sort, page) {
-    var data = await fetch('https://api.themoviedb.org/3/discover/tv?api_key=' + API_KEY + '&sort_by=' + sort +
-    +'&first_air_date_year=' + year + '&with_genres=' + genreQuery + '&page=' + page + '&include_adult=false');
-    var shows = await data.json();
+export function TvByMultiFilter(genreQuery, year, sort, page) {
+    const [shows, setShows] = React.useState([]);
+    React.useEffect(() => {
+        fetch('https://api.themoviedb.org/3/discover/tv?api_key=' + API_KEY + '&sort_by=' + sort +
+            +'&first_air_date_year=' + year + '&with_genres=' + genreQuery + '&page=' + page + '&include_adult=false')
+            .then((response) => response.json())
+            .then((responseJson => {
+                setShows(responseJson);
+            }))
+    }, []);
     return shows;
 }
 
-export async function tvImage(tvId) {
-    var data = await fetch('https://api.themoviedb.org/3/movie/' + tvId + '?api_key=' + API_KEY);
-    var show = await data.json();
-    var image = JSON.stringify("https://image.tmdb.org/t/p/original/" + show['poster_path']);
+export function TvImage(tvId) {
+    const [image, setImage] = React.useState("");
+    React.useEffect(() => {
+        fetch('https://api.themoviedb.org/3/tv/' + tvId + '?api_key=' + API_KEY)
+            .then((response) => response.json())
+            .then((responseJson => {
+                var path = JSON.stringify("https://image.tmdb.org/t/p/original/" + responseJson['poster_path']);
+                setImage(path.substring(1, path.length-1));
+            }))
+    }, []);
     return image;
-}
-
-export function testFunctions(id){
-
 }
