@@ -93,7 +93,7 @@ export function MovieImage(movieId) {
         fetch('https://api.themoviedb.org/3/movie/' + movieId + '?api_key=' + API_KEY)
             .then((response) => response.json())
             .then((responseJson => {
-                var path = JSON.stringify("https://image.tmdb.org/t/p/original/" + responseJson['poster_path']);
+                const path = JSON.stringify("https://image.tmdb.org/t/p/original/" + responseJson['poster_path']);
                 setImage(path.substring(1, path.length-1));
             }))
     }, []);
@@ -126,7 +126,7 @@ export function GetTvCastCrew(tvId) {
 }
 
 export function SearchTv(query) {
-    var tvQuery = SearchFormatter(query);
+    const tvQuery = SearchFormatter(query);
     const [results, setResults] = React.useState([]);
     React.useEffect(() => {
         fetch('https://api.themoviedb.org/3/search/tv?api_key=' + API_KEY + '&query=' + tvQuery + '&include_adult=false')
@@ -157,7 +157,7 @@ export function TvImage(tvId) {
         fetch('https://api.themoviedb.org/3/tv/' + tvId + '?api_key=' + API_KEY)
             .then((response) => response.json())
             .then((responseJson => {
-                var path = JSON.stringify("https://image.tmdb.org/t/p/original/" + responseJson['poster_path']);
+                const path = JSON.stringify("https://image.tmdb.org/t/p/original/" + responseJson['poster_path']);
                 setImage(path.substring(1, path.length-1));
             }))
     }, []);
