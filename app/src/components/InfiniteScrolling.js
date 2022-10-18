@@ -15,7 +15,7 @@ class InfiniteScrolling extends React.Component {
 
     componentDidMount() {
         movieByGenre(this.state.query, 1).then((res) => {
-           this.updateState('items', res.data.results);
+            this.updateState('items', res.data.results);
         });
     }
 
@@ -47,11 +47,14 @@ class InfiniteScrolling extends React.Component {
             >
                 {this.state.items.map((i) => {
                     return (
-                        <div key={i.id}>
-                            <div>{i.title}</div>
-                            <div>{i['vote_average']}</div>
-                            <div>{i['release_date']}</div><br/>
-                        </div>)
+                    <div key={i.id}>
+                        <img key={i['poster_path']} alt={`A poster for ${i.title}`} src={`https://image.tmdb.org/t/p/w500${i['backdrop_path']}`}/>
+                        <div>{i.title}</div>
+                        <div>{i['vote_average']}</div>
+                        <div>{i['release_date']}</div>
+                        <br/>
+                    </div>
+                )
                 })}
             </InfiniteScroll>
         );
