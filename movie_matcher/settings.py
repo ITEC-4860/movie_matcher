@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -25,8 +24,9 @@ SECRET_KEY = 'django-insecure-u^q1u28o-7*erqetbl%7_&usjq+=7^!$l&+rl4&v+q$&t)*c($
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    'http://localhost:3000'
+]
 
 # Application definition
 
@@ -69,7 +69,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'movie_matcher.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -79,7 +78,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -99,7 +97,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -110,7 +107,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -146,4 +142,3 @@ CORS_ORIGIN_WHITELIST = (
 JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'movie_matcher.jwt_utils.my_jwt_response_handler'
 }
-    
