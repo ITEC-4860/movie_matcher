@@ -6,15 +6,17 @@ import {movieByGenre} from "./ScrollComponent";
 class InfiniteScrolling extends React.Component {
     constructor(props) {
         super(props);
+        this.props = {
+            query: props.query
+        }
         this.state = {
-            items: [[]],
-            query: props.query,
+            items: [],
             pageNumber: 2
         };
     }
 
     componentDidMount() {
-        movieByGenre(this.state.query, 1).then((res) => {
+        movieByGenre(this.props.query, 1).then((res) => {
             this.updateState('items', res.data.results);
         });
     }
@@ -29,7 +31,7 @@ class InfiniteScrolling extends React.Component {
 
     fetchData = async () => {
         console.log('fetching data');
-        const res = await movieByGenre(this.state.query, this.state.pageNumber);
+        const res = await movieByGenre(this.props.query, this.state.pageNumber);
         const data = await res.data;
         console.log(data);
         this.updateState('items', [...this.state.items, ...data.results]);
@@ -58,28 +60,36 @@ class InfiniteScrolling extends React.Component {
         return out;
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.query !== this.props.query) {
+            movieByGenre(this.props.query, 1).then((res) => {
+                this.updateState('items', res.data.results);
+            });
+        }
+    }
+
     render() {
         return (
-            <InfiniteScroll
-                next={this.fetchData}
-                hasMore={true}
-                loader={<h4>Loading more...</h4>}
-                dataLength={this.state.items.length}
-            >
-                <div style={{display: "flex", flexWrap: "wrap"}}>
-                {this.state.items.map((i) => {
-                    return (
-                        <div key={i.id} style={{margin: 5}}>
-                            <img key={i['poster_path']} alt={`A poster for ${i.title}`}
-                                 src={`https://image.tmdb.org/t/p/w500${i['backdrop_path']}`}/>
-                            <div>{i.title}</div>
-                            <div>{i['vote_average']}</div>
-                            <div>{i['release_date']}</div>
-                            <br/>
-                        </div>
-                    )
-                })}</div>
-            </InfiniteScroll>
+                <InfiniteScroll
+                    next={this.fetchData}
+                    hasMore={true}
+                    loader={<h4>Loading more...</h4>}
+                    dataLength={this.state.items.length}
+                >
+                    <div style={{display: "flex", flexWrap: "wrap"}}>
+                        {this.state.items.map((i) => {
+                            return (
+                                <div key={i.id} style={{margin: 5}}>
+                                    <img key={i['poster_path']} alt={`A poster for ${i.title}`}
+                                         src={`https://image.tmdb.org/t/p/w500${i['backdrop_path']}`}/>
+                                    <div>{i.title}</div>
+                                    <div>{i['vote_average']}</div>
+                                    <div>{i['release_date']}</div>
+                                    <br/>
+                                </div>
+                            )
+                        })}</div>
+                </InfiniteScroll>
         );
     }
 }
