@@ -54,3 +54,80 @@ input {
     background-color: #c1c1c1;
   }
 }
+
+.InfScrollMain{
+  display: flex;
+  flex-wrap: wrap;
+  .InfScrollCard{
+    margin: 5px;
+    background-color: lightgray;
+    width: 500px;
+    .Title{
+      font-weight: bold;
+      font-size: 150%;
+    }
+    .CardInfo{
+      font-size: 120%;
+    }
+  }
+}
+
+.MoviePageContainer{
+  .row{
+    margin: 5px;
+  }
+  img{
+    order: 0;
+    width: 180px;
+  }
+  .col-sm-7{
+    order: 1;
+    h1{
+      font-weight: bold;
+    }
+    p{
+      font-size: 135%;
+    }
+  }
+  .dropdownButton{
+    order: 2;
+    margin-top: 1%;
+  }
+}
+
+.profileContainer{
+  padding-bottom: 10%;
+  .row{
+    justify-content: start;
+    .profilePic{
+      width: 15%;
+      height: 15%;
+      border-radius: 50%;
+    }
+    h1{
+      text-align: left;
+      padding-top: 6.5%;
+      padding-left: 3%;
+    }
+    .fav{
+      padding-top: 0.5%;
+      padding-left: 8%;
+      .favMovCards{
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+  }
+}
+
+.MovieCardContainer{
+  margin: 5px;
+  background-color: lightgray;
+  width: 250px;
+    .CardInfo{
+      font-size: 120%;
+    }
+  .col-sm-3{
+    width: 250px;
+  }
+}
