@@ -4,6 +4,7 @@ import Nav from './components/Nav';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import './App.css';
+import MoviePage from "./components/MoviePage";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -81,6 +82,9 @@ class App extends Component {
         break;
       case 'signup':
         form = <SignupForm handle_signup={this.handle_signup} />;
+        break;
+      case 'movie':
+        form = <MoviePage query={18} />;
         break;
       default:
         form = null;

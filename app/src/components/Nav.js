@@ -6,6 +6,7 @@ function Nav(props) {
     <ul>
       <li onClick={() => props.display_form('login')}>login</li>
       <li onClick={() => props.display_form('signup')}>signup</li>
+        <li onClick={() => props.display_form('movie')}>movie</li>
     </ul>
   );
   const logged_in_nav = (
