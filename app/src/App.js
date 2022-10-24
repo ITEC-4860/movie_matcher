@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       displayed_form: '',
       logged_in: localStorage.getItem('token') ? true : false,
-      username: ''
+      username: '',
+      search: ''
     };
   }
   componentDidMount() {
@@ -74,6 +75,16 @@ class App extends Component {
       displayed_form: form
     });
   };
+  handle_change = e => {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState(prevState => {
+      const newState = {...prevState};
+      newState[name] = value;
+      return newState;
+    });
+  };
+
   render() {
     let form;
     switch (this.state.displayed_form) {
@@ -84,7 +95,7 @@ class App extends Component {
         form = <SignupForm handle_signup={this.handle_signup} />;
         break;
       case 'movie':
-        form = <MoviePage query={18} />;
+        form = <MoviePage query={this.state.search} />;
         break;
       default:
         form = null;
@@ -96,6 +107,12 @@ class App extends Component {
           display_form={this.display_form}
           handle_logout={this.handle_logout}
         />
+        <input
+            placeholder='Value for genre search'
+            type='text'
+            name='search'
+            value={this.state.search}
+            onChange={this.handle_change}/>
         {form}
         <h3>
           {this.state.logged_in
