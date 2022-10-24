@@ -28,9 +28,6 @@ class MoviePage extends React.Component {
         });
     };
 
-    /**
-     * Changes: removed the '.results' from data in updateState
-     */
     fetchData = async () => {
         console.log('fetching data');
         const res = await movieById(this.props.query);
@@ -71,9 +68,6 @@ class MoviePage extends React.Component {
         }
     }
 
-    /**
-     * Note: Info from TMDB can be pulled from API, however displaying is inconsistent.
-     */
     render() {
         void this.fetchData();
         return (

@@ -12,7 +12,7 @@ class App extends Component {
       displayed_form: '',
       logged_in: localStorage.getItem('token') ? true : false,
       username: '',
-      search: ''
+      movieId: ''
     };
   }
   componentDidMount() {
@@ -95,7 +95,7 @@ class App extends Component {
         form = <SignupForm handle_signup={this.handle_signup} />;
         break;
       case 'movie':
-        form = <MoviePage query={this.state.search} />;
+        form = <MoviePage query={this.state.movieId} />;
         break;
       default:
         form = null;
@@ -111,7 +111,7 @@ class App extends Component {
             placeholder='Value for genre search'
             type='text'
             name='search'
-            value={this.state.search}
+            value={this.state.movieId}
             onChange={this.handle_change}/>
         {form}
         <h3>
