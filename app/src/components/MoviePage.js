@@ -36,8 +36,10 @@ class MoviePage extends React.Component {
         const res = await movieById(this.props.query);
         const data = await res.data;
         console.log(data);
-        this.updateState('items', [this.state.items, data]);
+        console.log("Length: " + this.state.items.length);
+        //this.updateState('items', [...this.state.items, data]);
         console.log(this.state.items);
+        console.log("Contents: " + this.state.items);
     }
 
     solutionForTable = array => {
@@ -76,19 +78,15 @@ class MoviePage extends React.Component {
         void this.fetchData();
         return (
                 <div style={{display: "flex", flexWrap: "wrap"}}>
-                    {this.state.items.map((i) => {
-                        console.log(i);
-                        return (
-                            <div key={i.id} style={{margin: 5}}>
-                                <img key={i['poster_path']} alt={`A poster for ${i.title}`}
-                                     src={`https://image.tmdb.org/t/p/w500${i['backdrop_path']}`}/>
-                                <div>{i}</div>
-                                <div>{i['vote_average']}</div>
-                                <div>{i['release_date']}</div>
+                            <div key={this.state.items.id} style={{margin: 5}}>
+                                <img key={this.state.items['poster_path']} alt={`A poster for ${this.state.items.title}`}
+                                     src={`https://image.tmdb.org/t/p/w500${this.state.items['backdrop_path']}`}/>
+                                <div>{this.state.items.title}</div>
+                                <div>{this.state.items['vote_average']}</div>
+                                <div>{this.state.items['release_date']}</div>
                                 <br/>
                             </div>
-                        )
-                    })}</div>
+                </div>
         );
     }
 }
