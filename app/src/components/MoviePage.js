@@ -1,5 +1,7 @@
 import React from "react";
+import "../MoviePage.css";
 //import InfiniteScroll from "react-infinite-scroll-component";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import {movieById} from "./MovieComponent";
 
@@ -71,16 +73,19 @@ class MoviePage extends React.Component {
     render() {
         void this.fetchData();
         return (
-                <div style={{display: "flex", flexWrap: "wrap"}}>
-                            <div key={this.state.items.id} style={{margin: 5}}>
-                                <img key={this.state.items['poster_path']} alt={`A poster for ${this.state.items.title}`}
-                                     src={`https://image.tmdb.org/t/p/w500${this.state.items['backdrop_path']}`}/>
-                                <div>{this.state.items.title}</div>
-                                <div>{this.state.items['vote_average']}</div>
-                                <div>{this.state.items['release_date']}</div>
-                                <br/>
-                            </div>
+            <div style={{display: "flex", flexWrap: "wrap"}}>
+                <div className={'row'} key={this.state.items.id} style={{margin: 5}}>
+                    <img className={'col col-sm-3'} key={this.state.items['poster_path']}
+                         alt={`A poster for ${this.state.items.title}`}
+                         src={`https://image.tmdb.org/t/p/w500${this.state.items['poster_path']}`}/>
+                    <div className={'col order-1 col-sm-7'}>
+                        <h1>{this.state.items.title}</h1>
+                        <h6> Released: {this.state.items['release_date']}</h6>
+                        <p>{this.state.items['overview']}</p>
+                    </div>
+                    <br/>
                 </div>
+            </div>
         );
     }
 }

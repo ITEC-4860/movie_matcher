@@ -95,7 +95,7 @@ class App extends Component {
         form = <SignupForm handle_signup={this.handle_signup} />;
         break;
       case 'movie':
-        form = <MoviePage query={this.state.movieId} />;
+        form = <MoviePage query={11} />;
         break;
       default:
         form = null;
@@ -108,7 +108,7 @@ class App extends Component {
           handle_logout={this.handle_logout}
         />
         <input
-            placeholder='Value for genre search'
+            placeholder='Value for movie search'
             type='text'
             name='search'
             value={this.state.movieId}
