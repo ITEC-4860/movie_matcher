@@ -9,7 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       displayed_form: '',
-      logged_in: localStorage.getItem('token') ? true : false,
+      logged_in: localStorage.getItem('refresh') ? true : false,
       username: ''
     };
   }
@@ -17,7 +17,7 @@ class App extends Component {
     if (this.state.logged_in) {
       fetch('http://localhost:8000/api/current_user/', {
         headers: {
-          Authorization: `JWT ${localStorage.getItem('token')}`
+          Authorization: `Bearer  ${localStorage.getItem('access')}`
         }
       })
         .then(res => res.json())
@@ -37,11 +37,14 @@ class App extends Component {
     })
       .then(res => res.json())
       .then(json => {
-        localStorage.setItem('token', json.token);
+        console.log(json.refresh)
+        console.log(json.access)
+        localStorage.setItem('access', json.access);
+        localStorage.setItem('refresh', json.refresh);
         this.setState({
           logged_in: true,
           displayed_form: '',
-          username: json.user.username
+          username: json.username
         });
       });
   };
@@ -56,7 +59,8 @@ class App extends Component {
     })
       .then(res => res.json())
       .then(json => {
-        localStorage.setItem('token', json.token);
+        localStorage.setItem('access', json.access);
+        localStorage.setItem('refresh', json.refresh);
         this.setState({
           logged_in: true,
           displayed_form: '',
@@ -65,7 +69,8 @@ class App extends Component {
       });
   };
   handle_logout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('access');
+    localStorage.removeItem('refresh');
     this.setState({ logged_in: false, username: '' });
   };
   display_form = form => {
