@@ -4,6 +4,7 @@ import "../MoviePage.css";
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import {movieById} from "./MovieComponent";
+import Popup from "reactjs-popup";
 
 class MoviePage extends React.Component {
     constructor(props) {
@@ -73,19 +74,21 @@ class MoviePage extends React.Component {
     render() {
         void this.fetchData();
         return (
-            <div style={{display: "flex", flexWrap: "wrap"}}>
-                <div className={'row'} key={this.state.items.id} style={{margin: 5}}>
-                    <img className={'col col-sm-3'} key={this.state.items['poster_path']}
-                         alt={`A poster for ${this.state.items.title}`}
-                         src={`https://image.tmdb.org/t/p/w500${this.state.items['poster_path']}`}/>
-                    <div className={'col order-1 col-sm-7'}>
-                        <h1>{this.state.items.title}</h1>
-                        <h6> Released: {this.state.items['release_date']}</h6>
-                        <p>{this.state.items['overview']}</p>
+            <Popup contentStyle={{width: "50%", backgroundColor: "grey"}} trigger={<button> Trigger </button>} position={"right center"}>
+                <div style={{display: "flex", flexWrap: "wrap"}}>
+                    <div className={'row'} key={this.state.items.id} style={{margin: 5}}>
+                        <img className={'col col-sm-3'} key={this.state.items['poster_path']}
+                             alt={`A poster for ${this.state.items.title}`}
+                             src={`https://image.tmdb.org/t/p/w500${this.state.items['poster_path']}`}/>
+                        <div className={'col order-1 col-sm-7'}>
+                            <h1>{this.state.items.title}</h1>
+                            <h6> Released: {this.state.items['release_date']}</h6>
+                            <p>{this.state.items['overview']}</p>
+                        </div>
+                        <br/>
                     </div>
-                    <br/>
                 </div>
-            </div>
+            </Popup>
         );
     }
 }
