@@ -2,6 +2,8 @@ import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import {movieByGenre} from "./ScrollComponent";
+import MoviePage from "./MoviePage";
+import Popup from "reactjs-popup";
 
 class InfiniteScrolling extends React.Component {
     constructor(props) {
@@ -85,6 +87,9 @@ class InfiniteScrolling extends React.Component {
                                     <div>{i.title}</div>
                                     <div>{i['vote_average']}</div>
                                     <div>{i['release_date']}</div>
+                                    <Popup contentStyle={{width: "40%", backgroundColor: "grey"}} trigger={<button> See More </button>} position={"right top"}>
+                                        <MoviePage query={i.id}/>
+                                    </Popup>
                                     <br/>
                                 </div>
                             )
