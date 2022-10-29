@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -140,4 +140,8 @@ CORS_ORIGIN_WHITELIST = (
 )
 JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'movie_matcher.jwt_utils.my_jwt_response_handler'
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
 }
