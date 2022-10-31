@@ -88,7 +88,7 @@ class MoviePage extends React.Component {
 
     getRuntime() {
         let runtime = this.state.items['runtime'] / 60;
-        return "Runtime: " + runtime.toString().at(0) + " Hour(s) & " + runtime.toString().at(2) + "0 Minute(s)"
+        return "Runtime: ~" + runtime.toString().at(0) + " Hour(s) & " + runtime.toString().at(2) + "0 Minute(s)"
     }
 
     render() {
