@@ -70,6 +70,29 @@ class InfiniteScrolling extends React.Component {
         }
     }
 
+    formatDate(date){
+        let monthMap = new Map([
+            [1, "Jan."],
+            [2, "Feb."],
+            [3, "March"],
+            [4, "April"],
+            [5, "May"],
+            [6, "June"],
+            [7, "July"],
+            [8, "Aug."],
+            [9, "Sept."],
+            [10, "Oct."],
+            [11, "Nov."],
+            [12, "Dec."]
+        ]);
+        if(parseInt(date, 5) == 0){
+            return monthMap.get(parseInt(date, 6)) + " " + date.substring(8) + ", " + date.substring(0, 4);
+        } else {
+            let month = date.substring(5, 7);
+            return monthMap.get(parseInt(month)) + " " + date.substring(8) + ", " + date.substring(0, 4);
+        }
+    }
+
     render() {
         return (
                 <InfiniteScroll
@@ -85,8 +108,8 @@ class InfiniteScrolling extends React.Component {
                                     <img key={i['poster_path']} alt={`A poster for ${i.title}`}
                                          src={`https://image.tmdb.org/t/p/w500${i['backdrop_path']}`}/>
                                     <div>{i.title}</div>
-                                    <div>{i['vote_average']}</div>
-                                    <div>{i['release_date']}</div>
+                                    <div>Rating: {i['vote_average']}</div>
+                                    <div>Released: {this.formatDate(i['release_date'])}</div>
                                     <Popup contentStyle={{width: "40%", backgroundColor: "grey"}} trigger={<button> See More </button>} position={"right top"}>
                                         <MoviePage query={i.id}/>
                                     </Popup>
