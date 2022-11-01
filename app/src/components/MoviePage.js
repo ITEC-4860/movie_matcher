@@ -124,7 +124,7 @@ class MoviePage extends React.Component {
                              src={`https://image.tmdb.org/t/p/w500${this.state.items['poster_path']}`}/>
                         <div className={'col order-1 col-sm-8'}>
                             <h1 style={{fontWeight: "bold"}}>{this.state.items.title}</h1>
-                            <h6> Released: {this.formatDate() + " | " + this.getGenres() + " | " + this.state.items['runtime'] + " Minutes"}</h6>
+                            <h5> Released: {this.formatDate() + " | " + this.getGenres() + " | " + this.state.items['runtime'] + " Minutes"}</h5>
                             <p style={{fontSize: "12pt"}}>{this.state.items['overview']}</p>
                         </div>
                         <div className={'col order-2 col-sm-8'}>
