@@ -7,6 +7,7 @@ function Nav(props) {
         <li onClick={() => props.display_form('login')}>login</li>
         <li onClick={() => props.display_form('signup')}>signup</li>
         <li onClick={() => props.display_form('library')}>library</li>
+        <li onClick={() => props.display_form('infinite_scroll')}>infinite_scroll</li>
     </ul>
   );
   const logged_in_nav = (
