@@ -13,6 +13,7 @@ class MoviePage extends React.Component {
         this.state = {
             items: [],
             genres: [],
+            date: "",
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -26,6 +27,7 @@ class MoviePage extends React.Component {
         movieById(this.props.query).then((res) => {
             this.updateState('items', res.data);
             this.updateState('genres', res.data['genres']);
+            this.updateState('date', res.data['release_date']);
         });
     }
 
@@ -74,6 +76,7 @@ class MoviePage extends React.Component {
             movieById(this.props.query).then((res) => {
                 this.updateState('items', res.data);
                 this.updateState('genres', res.data['genres']);
+                this.updateState('date', res.data['release_date']);
             });
         }
     }
@@ -85,10 +88,30 @@ class MoviePage extends React.Component {
         }
         return "Genres: " + allGenres.substring(0, allGenres.length-2);
     }
-
-    getRuntime() {
-        let runtime = this.state.items['runtime'] / 60;
-        return "Runtime: ~" + runtime.toString().at(0) + " Hour(s) & " + runtime.toString().at(2) + "0 Minute(s)"
+    // 2 0 2 2 - 1 0 - 1 5
+    // 0 1 2 3 4 5 6 7 8 9
+    formatDate(){
+        let date = this.state.date;
+        let monthMap = new Map([
+            [1, "Jan."],
+            [2, "Feb."],
+            [3, "March"],
+            [4, "April"],
+            [5, "May"],
+            [6, "June"],
+            [7, "July"],
+            [8, "Aug."],
+            [9, "Sept."],
+            [10, "Oct."],
+            [11, "Nov."],
+            [12, "Dec."]
+        ]);
+        if(parseInt(date, 5) == 0){
+            return monthMap.get(parseInt(date, 6)) + " " + date.substring(8) + ", " + date.substring(0, 4);
+        } else {
+            let month = date.substring(5, 7);
+            return monthMap.get(parseInt(month)) + " " + date.substring(8) + ", " + date.substring(0, 4);
+        }
     }
 
     render() {
@@ -101,7 +124,7 @@ class MoviePage extends React.Component {
                              src={`https://image.tmdb.org/t/p/w500${this.state.items['poster_path']}`}/>
                         <div className={'col order-1 col-sm-8'}>
                             <h1 style={{fontWeight: "bold"}}>{this.state.items.title}</h1>
-                            <h6> Released: {this.state.items['release_date'] + " | " + this.getGenres() + " | " + this.getRuntime()}</h6>
+                            <h6> Released: {this.formatDate() + " | " + this.getGenres() + " | " + this.state.items['runtime'] + " Minutes"}</h6>
                             <p style={{fontSize: "12pt"}}>{this.state.items['overview']}</p>
                         </div>
                         <div className={'col order-2 col-sm-8'}>
