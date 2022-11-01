@@ -86,7 +86,7 @@ class MoviePage extends React.Component {
         for(let i = 0; i < this.state.genres.length; i++){
             allGenres += this.state.genres.at(i).name + ", ";
         }
-        return "Genres: " + allGenres.substring(0, allGenres.length-2);
+        return "Genre(s): " + allGenres.substring(0, allGenres.length-2);
     }
     // 2 0 2 2 - 1 0 - 1 5
     // 0 1 2 3 4 5 6 7 8 9
