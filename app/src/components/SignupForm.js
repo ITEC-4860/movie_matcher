@@ -1,6 +1,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link, NavLink} from "react-router-dom";
 class SignupForm extends React.Component {
   state = {
     username: '',
@@ -17,25 +18,51 @@ class SignupForm extends React.Component {
   };
   render() {
     return (
-      <form onSubmit={e => this.props.handle_signup(e, this.state)}>
-        <h4>Sign Up</h4>
-        <label htmlFor="username">Username</label>
+        <div className="formCenter">
+      <form className="formFields" onSubmit={e => this.props.handle_signup(e, this.state)}>
+            <div className="formField">
+                <h4>Sign Up</h4>
+        <label className="formFieldLabel" htmlFor="username">
+            Username
+        </label>
         <input
           type="text"
           name="username"
+          className="formFieldInput"
+           placeholder="Enter your username"
           value={this.state.username}
           onChange={this.handle_change}
         />
-        <label htmlFor="password">Password</label>
+            </div>
+
+            <div className="formField">
+        <label className="formFieldLabel" htmlFor="password">
+            Password
+        </label>
         <input
           type="password"
+          className="formFieldInput"
+          placeholder="Enter your password"
           name="password"
           value={this.state.password}
           onChange={this.handle_change}
         />
-        <input type="submit" />
+                 </div>
+
+
+             <div className="formField">
+                            <button className="formFieldButton">Sign Up</button>{" "}
+                            <Link to="/LoginForm" className="formFieldLink">
+                               I'm already member
+                            </Link>
+
+        {/*<input type="submit" />*/}
+
+                      </div>
       </form>
+                </div>
     );
+
   }
 }
 export default SignupForm;

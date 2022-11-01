@@ -21,7 +21,7 @@ body {
 .appAside {
   width: 50%;
   background-color: #720000;
-  background-image: url("Public/curtains.png");
+  background-image: url("../public/curtains.png");
 }
 
 .appForm {
@@ -203,7 +203,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url(public/curtains.png);
+  background-image: url(../public/curtains.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

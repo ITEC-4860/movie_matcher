@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Nav from './components/Nav';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
+import { BrowserRouter as Router, Route } from "react-router-dom"
 import './App.css';
 class App extends Component {
   constructor(props) {
@@ -74,6 +75,7 @@ class App extends Component {
     });
   };
   render() {
+
     let form;
     switch (this.state.displayed_form) {
       case 'login':
@@ -99,6 +101,9 @@ class App extends Component {
             : 'Please Log In'}
         </h3>
       </div>
+    );
+     return (
+     <Routers />
     );
   }
 }
