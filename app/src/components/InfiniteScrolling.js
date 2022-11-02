@@ -1,7 +1,7 @@
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import {movieByGenre} from "./ScrollComponent";
+import {movieMultiFilter} from "./ScrollComponent";
 import MoviePage from "./MoviePage";
 import Popup from "reactjs-popup";
 
@@ -9,16 +9,24 @@ class InfiniteScrolling extends React.Component {
     constructor(props) {
         super(props);
         this.props = {
-            query: props.query
+            query: props.query,
+            sort: props.sort,
+            yearA: props.yearA,
+            yearB: props.yearB,
+            runtime: props.runtime
         }
         this.state = {
             items: [],
+            sort: '',
+            yearA: 1895,
+            yearB: new Date().getFullYear(),
+            runtime: 40,
             pageNumber: 2
         };
     }
 
     componentDidMount() {
-        movieByGenre(this.props.query, 1).then((res) => {
+        movieMultiFilter(this.props.query, this.props.sort, this.props.yearA, this.props.yearB, this.props.runtime, 1).then((res) => {
             this.updateState('items', res.data.results);
         });
     }
@@ -33,7 +41,7 @@ class InfiniteScrolling extends React.Component {
 
     fetchData = async () => {
         console.log('fetching data');
-        const res = await movieByGenre(this.props.query, this.state.pageNumber);
+        const res = await movieMultiFilter(this.props.query, this.props.sort, this.props.yearA, this.props.yearB, this.props.runtime, this.state.pageNumber);
         const data = await res.data;
         console.log(data);
         this.updateState('items', [...this.state.items, ...data.results]);
@@ -64,7 +72,7 @@ class InfiniteScrolling extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.query !== this.props.query) {
-            movieByGenre(this.props.query, 1).then((res) => {
+            movieMultiFilter(this.props.query, this.props.sort, this.props.yearA, this.props.yearB, this.props.runtime, 1).then((res) => {
                 this.updateState('items', res.data.results);
             });
         }
