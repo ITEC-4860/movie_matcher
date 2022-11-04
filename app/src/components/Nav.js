@@ -15,7 +15,7 @@ function Nav(props) {
       <li className={"nav-item"} onClick={props.handle_logout}>logout</li>
     </ul>
   );
-  return <div className={"navbar navbar-expand-lg navbar-dark bg-dark text-light"}>{props.logged_in ? logged_in_nav : logged_out_nav}</div>;
+  return <div className={"navbar navbar-expand-lg navbar-dark bg-dark fixed-top text-light"}>{props.logged_in ? logged_in_nav : logged_out_nav}</div>;
 }
 export default Nav;
 Nav.propTypes = {

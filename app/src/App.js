@@ -97,12 +97,14 @@ class App extends Component {
           display_form={this.display_form}
           handle_logout={this.handle_logout}
         />
-        {form}
-        <h3>
-          {this.state.logged_in
-            ? `Hello, ${this.state.username}`
-            : 'Please Log In'}
-        </h3>
+        <body style={{paddingTop:"4%"}}>
+          {form}
+          <h3>
+            {this.state.logged_in
+                ? `Hello, ${this.state.username}`
+                : 'Please Log In'}
+          </h3>
+        </body>
       </div>
     );
   }
