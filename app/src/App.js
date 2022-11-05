@@ -97,7 +97,7 @@ class App extends Component {
           display_form={this.display_form}
           handle_logout={this.handle_logout}
         />
-        <body style={{paddingTop:"4%"}}>
+        <body style={{paddingTop:"6.5%"}}>
           {form}
           <h3>
             {this.state.logged_in
