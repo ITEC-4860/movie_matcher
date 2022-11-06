@@ -7,10 +7,10 @@ import logo from '../movie_matcher_logo.png';
 function Nav(props) {
   const logged_out_nav = (
     <ul className={"navbar-nav mr-auto"}>
-        <li className={"nav-item"} onClick={() => props.display_form('login')}>login</li>
-        <li className={"nav-item"} onClick={() => props.display_form('signup')}>signup</li>
-        <li className={"nav-item"} onClick={() => props.display_form('library')}>library</li>
-        <li className={"nav-item"} onClick={() => props.display_form('infinite_scroll')}>infinite_scroll</li>
+        <li className={"nav-item"} onClick={() => props.display_form('login')}>Login</li>
+        <li className={"nav-item"} onClick={() => props.display_form('signup')}>SignUp</li>
+        <li className={"nav-item"} onClick={() => props.display_form('library')}>Library</li>
+        <li className={"nav-item"} onClick={() => props.display_form('infinite_scroll')}>Infinite_Scroll</li>
     </ul>
   );
   const logged_in_nav = (
