@@ -93,7 +93,7 @@ class InfiniteScrolling extends React.Component {
             [11, "Nov."],
             [12, "Dec."]
         ]);
-        if(parseInt(date, 5) == 0){
+        if(parseInt(date, 5) === 0){
             return monthMap.get(parseInt(date, 6)) + " " + date.substring(8) + ", " + date.substring(0, 4);
         } else {
             let month = date.substring(5, 7);

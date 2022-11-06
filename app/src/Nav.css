@@ -1,0 +1,11 @@
+.navbar-nav>li {
+    padding-right: 15%;
+    padding-left: 15%;
+    font-size: 125%;
+}
+
+.navbar>.navbar-brand{
+    height: auto;
+    padding: 0;
+    width: 5%;
+}
