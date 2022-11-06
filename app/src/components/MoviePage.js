@@ -106,7 +106,7 @@ class MoviePage extends React.Component {
             [11, "Nov."],
             [12, "Dec."]
         ]);
-        if(parseInt(date, 5) == 0){
+        if(parseInt(date, 5) === 0){
             return monthMap.get(parseInt(date, 6)) + " " + date.substring(8) + ", " + date.substring(0, 4);
         } else {
             let month = date.substring(5, 7);
@@ -122,10 +122,10 @@ class MoviePage extends React.Component {
                         <img className={'col col-sm-3'} key={this.state.items['poster_path']}
                              alt={`A poster for ${this.state.items.title}`}
                              src={`https://image.tmdb.org/t/p/w500${this.state.items['poster_path']}`}/>
-                        <div className={'col order-1 col-sm-8'}>
+                        <div className={'col order-1 col-sm-7'}>
                             <h1 style={{fontWeight: "bold"}}>{this.state.items.title}</h1>
                             <h5> Released: {this.formatDate() + " | " + this.getGenres() + " | " + this.state.items['runtime'] + " Minutes"}</h5>
-                            <p style={{fontSize: "12pt"}}>{this.state.items['overview']}</p>
+                            <p style={{fontSize: "125%"}}>{this.state.items['overview']}</p>
                         </div>
                         <div className={'col order-2 col-sm-8'}>
                             <button onClick={this.handleClick}> Add to List </button>

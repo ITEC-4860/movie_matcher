@@ -115,42 +115,44 @@ class App extends Component {
           display_form={this.display_form}
           handle_logout={this.handle_logout}
         />
-        <input
-            placeholder='Value for genre search'
-            type='text'
-            name='search'
-            value={this.state.search}
-            onChange={this.handle_change}/>
-        <input
-            placeholder='Value for search sort'
-            type='text'
-            name='sort'
-            value={this.state.sort}
-            onChange={this.handle_change}/>
-        <input
-            placeholder='Value for start year'
-            type='text'
-            name='yearA'
-            value={this.state.yearA}
-            onChange={this.handle_change}/>
-        <input
-            placeholder='Value for end year'
-            type='text'
-            name='yearB'
-            value={this.state.yearB}
-            onChange={this.handle_change}/>
-        <input
-            placeholder='Value for min runtime'
-            type='text'
-            name='runtime'
-            value={this.state.runtime}
-            onChange={this.handle_change}/>
-        {form}
-        <h3>
-          {this.state.logged_in
-            ? `Hello, ${this.state.username}`
-            : 'Please Log In'}
-        </h3>
+        <body style={{paddingTop:"6.5%"}}>
+            <input
+                placeholder='Value for genre search'
+                type='text'
+                name='search'
+                value={this.state.search}
+                onChange={this.handle_change}/>
+            <input
+                placeholder='Value for search sort'
+                type='text'
+                name='sort'
+                value={this.state.sort}
+                onChange={this.handle_change}/>
+            <input
+                placeholder='Value for start year'
+                type='text'
+                name='yearA'
+                value={this.state.yearA}
+                onChange={this.handle_change}/>
+            <input
+                placeholder='Value for end year'
+                type='text'
+                name='yearB'
+                value={this.state.yearB}
+                onChange={this.handle_change}/>
+            <input
+                placeholder='Value for min runtime'
+                type='text'
+                name='runtime'
+                value={this.state.runtime}
+                onChange={this.handle_change}/>
+                {form}
+            <h3>
+                {this.state.logged_in
+                    ? `Hello, ${this.state.username}`
+                    : 'Please Log In'}
+            </h3>
+        </body>
       </div>
     );
   }
