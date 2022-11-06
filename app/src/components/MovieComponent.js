@@ -6,3 +6,7 @@ export function movieById(query) {
     return axios.get(`https://api.themoviedb.org/3/movie/${query}?api_key=${API_KEY}`);
 
 }
+
+export function movieCastCrew(query){
+    return axios.get(`https://api.themoviedb.org/3/movie/${query}/casts?api_key=${API_KEY}`);
+}
