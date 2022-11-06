@@ -2,7 +2,7 @@ import React from "react";
 import "../MoviePage.css";
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import {movieById} from "./MovieComponent";
+import {movieById, movieCastCrew} from "./MovieComponent";
 
 class MoviePage extends React.Component {
     constructor(props) {
@@ -12,6 +12,7 @@ class MoviePage extends React.Component {
         }
         this.state = {
             items: [],
+            crew: [],
             genres: [],
             date: "",
         };
@@ -28,6 +29,9 @@ class MoviePage extends React.Component {
             this.updateState('items', res.data);
             this.updateState('genres', res.data['genres']);
             this.updateState('date', res.data['release_date']);
+        });
+        movieCastCrew(this.props.query).then((res) => {
+            this.updateState('crew', res.data['crew']);
         });
     }
 
@@ -78,7 +82,22 @@ class MoviePage extends React.Component {
                 this.updateState('genres', res.data['genres']);
                 this.updateState('date', res.data['release_date']);
             });
+            movieCastCrew(this.props.query).then((res) => {
+                this.updateState('crew', res.data['crew']);
+            });
         }
+    }
+
+    getDirector() {
+        let crew = this.state.crew;
+        let director = crew.map((i) => {
+            let name = "";
+            if(i['job'] === "Director"){
+                name = i['name'];
+            }
+            return name;
+        });
+        return director;
     }
 
     getGenres(){
@@ -119,15 +138,17 @@ class MoviePage extends React.Component {
         return (
                 <div>
                     <div className={'row'} key={this.state.items.id} style={{margin: 5}}>
-                        <img className={'col col-sm-3'} key={this.state.items['poster_path']}
+                        <img className={'col col-sm-3'} style={{width: 180}} key={this.state.items['poster_path']}
                              alt={`A poster for ${this.state.items.title}`}
-                             src={`https://image.tmdb.org/t/p/w500${this.state.items['poster_path']}`}/>
+                             src={`https://image.tmdb.org/t/p/w500${this.state.items['poster_path']}`}
+                        />
                         <div className={'col order-1 col-sm-7'}>
                             <h1 style={{fontWeight: "bold"}}>{this.state.items.title}</h1>
                             <h5> Released: {this.formatDate() + " | " + this.getGenres() + " | " + this.state.items['runtime'] + " Minutes"}</h5>
-                            <p style={{fontSize: "125%"}}>{this.state.items['overview']}</p>
+                            <p style={{fontSize: "135%"}}>{this.state.items['overview']}</p>
+                            <h5>Director: {this.getDirector()}</h5>
                         </div>
-                        <div className={'col order-2 col-sm-8'}>
+                        <div className={'col order-2 col-sm-7'}>
                             <button onClick={this.handleClick}> Add to List </button>
                         </div>
                         <br/>

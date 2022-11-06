@@ -112,13 +112,15 @@ class InfiniteScrolling extends React.Component {
                     <div style={{display: "flex", flexWrap: "wrap"}}>
                         {this.state.items.map((i) => {
                             return (
-                                <div key={i.id} style={{margin: 5}}>
+                                <div key={i.id} style={{margin: 5, backgroundColor: "lightgrey", width: 500}}>
                                     <img key={i['poster_path']} alt={`A poster for ${i.title}`}
                                          src={`https://image.tmdb.org/t/p/w500${i['backdrop_path']}`}/>
                                     <div>{i.title}</div>
                                     <div>Rating: {i['vote_average']}</div>
                                     <div>Released: {this.formatDate(i['release_date'])}</div>
-                                    <Popup contentStyle={{width: "40%", backgroundColor: "grey"}} trigger={<button> See More </button>} position={"right top"}>
+                                    <Popup contentStyle={
+                                        {width: "40%", backgroundColor: "grey"}
+                                    } trigger={<button> See More </button>} position={"right top"}>
                                         <MoviePage query={i.id}/>
                                     </Popup>
                                     <br/>
