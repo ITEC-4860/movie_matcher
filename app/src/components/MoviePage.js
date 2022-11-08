@@ -1,6 +1,7 @@
 import React from "react";
 import "../MoviePage.css";
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {movieById, movieCastCrew} from "./MovieComponent";
 
@@ -133,6 +134,22 @@ class MoviePage extends React.Component {
         }
     }
 
+    dropDown(){
+        return(
+            <div className="dropdown">
+                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </button>
+                <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button className="dropdown-item" type="button">Action</button>
+                    <button className="dropdown-item" type="button">Another action</button>
+                    <button className="dropdown-item" type="button">Something else here</button>
+                </div>
+            </div>
+        );
+    }
+
     render() {
         void this.fetchData();
         return (
@@ -148,8 +165,9 @@ class MoviePage extends React.Component {
                             <p style={{fontSize: "135%"}}>{this.state.items['overview']}</p>
                             <h5>Director: {this.getDirector()}</h5>
                         </div>
-                        <div className={'col order-2 col-sm-7'}>
+                        <div className={'col order-2'} style={{marginTop: "1%"}}>
                             <button onClick={this.handleClick}> Add to List </button>
+                            {this.dropDown()}
                         </div>
                         <br/>
                     </div>
