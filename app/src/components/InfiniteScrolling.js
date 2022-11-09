@@ -101,9 +101,9 @@ class InfiniteScrolling extends React.Component {
         }
     }
 
-    render() {
-        return (
-                <InfiniteScroll
+    infScroll(){
+        return(
+            <InfiniteScroll
                     next={this.fetchData}
                     hasMore={true}
                     loader={<h4>Loading more...</h4>}
@@ -128,6 +128,18 @@ class InfiniteScrolling extends React.Component {
                             )
                         })}</div>
                 </InfiniteScroll>
+        );
+    }
+    /**
+    toolBar(){
+        return(
+            //Put magic code nav bar here
+        );
+    }*/
+
+    render() {
+        return (
+             this.infScroll()
         );
     }
 }
