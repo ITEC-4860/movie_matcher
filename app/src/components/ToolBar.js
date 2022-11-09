@@ -4,7 +4,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import InfiniteScrolling from "./InfiniteScrolling";
 
-class MoviePage extends React.Component {
+class ToolBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -83,4 +83,4 @@ class MoviePage extends React.Component {
     }
 }
 
-export default MoviePage;
+export default ToolBar;
