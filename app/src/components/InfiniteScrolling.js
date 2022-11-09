@@ -18,10 +18,11 @@ class InfiniteScrolling extends React.Component {
         this.state = {
             items: [],
             sort: '',
-            yearA: 1895,
-            yearB: new Date().getFullYear(),
-            runtime: 40,
-            pageNumber: 2
+            yearA: 0,
+            yearB: 0,
+            runtime: 0,
+            pageNumber: 2,
+            submitted: false,
         };
     }
 
@@ -78,7 +79,7 @@ class InfiniteScrolling extends React.Component {
         }
     }
 
-    formatDate(date){
+    formatDate(date) {
         let monthMap = new Map([
             [1, "Jan."],
             [2, "Feb."],
@@ -93,7 +94,7 @@ class InfiniteScrolling extends React.Component {
             [11, "Nov."],
             [12, "Dec."]
         ]);
-        if(parseInt(date, 5) === 0){
+        if (parseInt(date, 5) === 0) {
             return monthMap.get(parseInt(date, 6)) + " " + date.substring(8) + ", " + date.substring(0, 4);
         } else {
             let month = date.substring(5, 7);
@@ -101,45 +102,33 @@ class InfiniteScrolling extends React.Component {
         }
     }
 
-    infScroll(){
-        return(
-            <InfiniteScroll
-                    next={this.fetchData}
-                    hasMore={true}
-                    loader={<h4>Loading more...</h4>}
-                    dataLength={this.state.items.length}
-                >
-                    <div style={{display: "flex", flexWrap: "wrap"}}>
-                        {this.state.items.map((i) => {
-                            return (
-                                <div key={i.id} style={{margin: 5, backgroundColor: "lightgrey", width: 500}}>
-                                    <img key={i['poster_path']} alt={`A poster for ${i.title}`}
-                                         src={`https://image.tmdb.org/t/p/w500${i['backdrop_path']}`}/>
-                                    <div>{i.title}</div>
-                                    <div>Rating: {i['vote_average']}</div>
-                                    <div>Released: {this.formatDate(i['release_date'])}</div>
-                                    <Popup contentStyle={
-                                        {width: "40%", backgroundColor: "grey"}
-                                    } trigger={<button> See More </button>} position={"right top"}>
-                                        <MoviePage query={i.id}/>
-                                    </Popup>
-                                    <br/>
-                                </div>
-                            )
-                        })}</div>
-                </InfiniteScroll>
-        );
-    }
-    /**
-    toolBar(){
-        return(
-            //Put magic code nav bar here
-        );
-    }*/
-
     render() {
         return (
-             this.infScroll()
+            <InfiniteScroll
+                next={this.fetchData}
+                hasMore={true}
+                loader={<h4>Loading more...</h4>}
+                dataLength={this.state.items.length}
+            >
+                <div style={{display: "flex", flexWrap: "wrap"}}>
+                    {this.state.items.map((i) => {
+                        return (
+                            <div key={i.id} style={{margin: 5, backgroundColor: "lightgrey", width: 500}}>
+                                <img key={i['poster_path']} alt={`A poster for ${i.title}`}
+                                     src={`https://image.tmdb.org/t/p/w500${i['backdrop_path']}`}/>
+                                <div>{i.title}</div>
+                                <div>Rating: {i['vote_average']}</div>
+                                <div>Released: {this.formatDate(i['release_date'])}</div>
+                                <Popup contentStyle={
+                                    {width: "40%", backgroundColor: "grey"}
+                                } trigger={<button> See More </button>} position={"right top"}>
+                                    <MoviePage query={i.id}/>
+                                </Popup>
+                                <br/>
+                            </div>
+                        )
+                    })}</div>
+            </InfiniteScroll>
         );
     }
 }
