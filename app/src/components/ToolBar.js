@@ -14,7 +14,6 @@ class MoviePage extends React.Component {
             yearB: new Date().getFullYear(),
             runtime: 40,
             pageNumber: 2,
-            submitted: false,
             results: '',
         };
         this.handleClick = this.handleClick.bind(this);
