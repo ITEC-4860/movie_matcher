@@ -1,22 +1,22 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../Nav.css';
-import logo from '../movie_matcher_logo.png';
+import ListGroup from "react-bootstrap/ListGroup";
+import ListGroupItem from "react-bootstrap/ListGroupItem";
+
 function Nav(props) {
   const logged_out_nav = (
-    <ul className={"navbar-nav mr-auto"}>
-      <li className={"nav-item"} onClick={() => props.display_form('login')}>Login</li>
-      <li className={"nav-item"} onClick={() => props.display_form('signup')}>SignUp</li>
-    </ul>
+    <ListGroup className={"navList"} horizontal={true}>
+      <ListGroupItem action={true} onClick={() => props.display_form('login')}>Login</ListGroupItem>
+      <ListGroupItem action={true} onClick={() => props.display_form('signup')}>Signup</ListGroupItem>
+    </ListGroup>
   );
   const logged_in_nav = (
-    <ul className={"navbar-nav mr-auto"}>
-      <li className={"nav-item"} onClick={props.handle_logout}>logout</li>
-    </ul>
+    <ListGroup className={"navList"} horizontal={true}>
+      <ListGroupItem action={true} onClick={() => props.display_form('friends')}>Friends</ListGroupItem>
+      <ListGroupItem action={true} onClick={props.handle_logout}>Logout</ListGroupItem>
+    </ListGroup>
   );
-  return <div className={"navbar navbar-expand-lg navbar-dark bg-dark fixed-top text-light"}><img className={"navbar-brand"} src={logo} alt={"Movie Matcher Logo"}/>{props.logged_in ? logged_in_nav : logged_out_nav}</div>;
+    return (props.logged_in ? logged_in_nav : logged_out_nav);
 }
 export default Nav;
 Nav.propTypes = {

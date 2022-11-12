@@ -1,0 +1,57 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+button {
+  margin-left: 0.25%;
+  margin-bottom: 0.25%;
+}
+
+input {
+  display: block;
+  margin: 5px 0 5px;
+}
+
+.App {
+  body {
+    margin-left: 0.5%;
+  }
+  button {
+    color: white;
+    background-color: #474747;
+    border: none;
+  }
+  button:hover {
+    background-color: #c1c1c1;
+  }
+}
+
+.navList {
+  width: auto;
+}
+
+.form {
+  margin-left: 0.5%;
+}
+
+.topBar {
+  margin-left: 0;
+  background-color: #333333;
+  color: white;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  h3 {
+    margin-left: 0.5%;
+  }
+  img {
+    height: auto;
+    padding: 0;
+    width: 3.5%;
+  }
+  button {
+    color: white;
+    background-color: #474747;
+  }
+  button:hover {
+    background-color: #c1c1c1;
+  }
+}
