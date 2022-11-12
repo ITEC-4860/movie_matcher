@@ -122,9 +122,9 @@ class App extends Component {
                         : 'Please Log In'}
                 </h3>
                 </span>
-                <body>
+                <span className={"form"}>
                 {form}
-                </body>
+                </span>
             </div>
         );
     }
