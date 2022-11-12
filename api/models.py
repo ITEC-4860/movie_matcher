@@ -6,6 +6,7 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Profile(models.Model):
+    id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
     friends = models.ManyToManyField(User, related_name="friends", blank=True)
     birthday = models.DateField(null=True, blank=True)
