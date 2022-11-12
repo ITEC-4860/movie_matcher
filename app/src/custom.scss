@@ -11,9 +11,6 @@ input {
 }
 
 .App {
-  .form {
-    margin-left: 0.5%;
-  }
   button {
     color: white;
     background-color: #474747;
@@ -29,7 +26,9 @@ input {
 }
 
 .form {
+  div {
   margin-left: 0.5%;
+  }
 }
 
 .topBar {
