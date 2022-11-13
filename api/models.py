@@ -34,3 +34,17 @@ def create_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+
+@receiver(post_save, sender=Profile)
+def create_friend_request(sender, recipient, created, **kwargs):
+    if created:
+        FriendRequest.objects.create(from_user=sender, to_user=recipient)
+
+
+@receiver(post_save, sender=Profile)
+def handle_friend_request(sender, recipient, accepted, **kwargs):
+    if accepted:
+        sender.friends.update(friends=recipient)
+    else:
+        FriendRequest.objects.delete(from_user=recipient, to_user=sender)

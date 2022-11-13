@@ -7,7 +7,7 @@ from api.models import Profile
 class ProfileAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
-            'fields': ('user', 'phone', 'address', 'city', 'state', 'zip')
+            'fields': ('user', 'friends')
         }),
 
     )
