@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-
 import Nav from './components/Nav';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import Friends from "./components/Friends";
 import logo from './movie_matcher_logo.png';
+import ToolBar from "./components/ToolBar";
+import Profile from "./components/Profile";
 
 class App extends Component {
     constructor(props) {
@@ -12,7 +13,15 @@ class App extends Component {
         this.state = {
             displayed_form: '',
             logged_in: false,
-            username: ''
+            username: '',
+            profilePic: '',
+            favMovies: [],
+            favGenres: [],
+            search: '',
+            sort: '',
+            yearA: '',
+            yearB: '',
+            runtime: '',
         };
     }
 
@@ -91,6 +100,15 @@ class App extends Component {
             displayed_form: form
         });
     };
+    handle_change = e => {
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState(prevState => {
+            const newState = {...prevState};
+            newState[name] = value;
+            return newState;
+        });
+    };
 
     render() {
         let form;
@@ -104,23 +122,31 @@ class App extends Component {
             case 'friends':
                 form = <Friends username={this.state.username}/>;
                 break;
+            case 'library':
+                form = <ToolBar/>;
+                break;
+            case 'profile':
+                form = <Profile username={this.state.username} image={'https://c8.alamy.com/comp/GKBXCP/sad-old-man-GKBXCP.jpg'} favMovies={[200, 15, 500, 12, 76, 17, 13, 35, 11, 16, 25, 137]} favGenres={["Action", "Comedy", "Thriller"]}/>;
+                break;
             default:
                 form = null;
         }
         return (
             <div className="App">
                 <span className={"topBar"}>
-                    <img src={logo}/>
+                    <img src={logo} alt={"This is the Logo"}/>
                 <Nav
                     logged_in={this.state.logged_in}
                     display_form={this.display_form}
                     handle_logout={this.handle_logout}
                 />
+                    <div style={{paddingTop: "6.5%"}}>
                 <h3>
                     {this.state.logged_in
                         ? `Hello, ${this.state.username}`
                         : 'Please Log In'}
                 </h3>
+                    </div>
                 </span>
                 <span className={"form"}>
                 {form}
