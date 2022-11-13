@@ -160,12 +160,14 @@ Western
       </ToggleButtonGroup>
 
                 <br/>
+                   <p> <strong>Value for start year </strong> </p>
                 <input
                     placeholder='Value for start year'
                     type='text'
                     name='yearA'
                     value={this.state.yearA}
                     onChange={this.handle_change}/>
+                   <p> <strong>Value for end year </strong> </p>
                 <input
                     placeholder='Value for end year'
                     type='text'
@@ -174,20 +176,20 @@ Western
                     onChange={this.handle_change}/>
 
  <br/>
-                <label className="form-label" htmlFor="range">Release date range</label>
-                <div className="range">
-                    <input
-                        value={this.state.range}
-                        onChange={handleChange}
+                {/*<label className="form-label" htmlFor="range">Release date range</label>*/}
+                {/*<div className="range">*/}
+                {/*    <input*/}
+                {/*        value={this.state.range}*/}
+                {/*        onChange={handleChange}*/}
 
-                        placeholder='Date Range'
-                        type="range"
-                         name='range'
-                        className="form-range"
-                        min="1895" max="2023" id="range"
-                    />
+                {/*        placeholder='Date Range'*/}
+                {/*        type="range"*/}
+                {/*         name='range'*/}
+                {/*        className="form-range"*/}
+                {/*        min="1895" max="2023" id="range"*/}
+                {/*    />*/}
 
-                </div>
+                {/*</div>*/}
 
 
                 <label htmlFor="runtime" className="form-label">Maximum Length / Runtime in minutes </label>
