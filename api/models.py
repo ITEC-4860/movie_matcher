@@ -20,11 +20,6 @@ class Profile(models.Model):
         return self.user.username
 
 
-class FriendRequest(models.Model):
-    from_user = models.ForeignKey(Profile, related_name="from_user", on_delete=models.CASCADE)
-    to_user = models.ForeignKey(Profile, related_name="to_user", on_delete=models.CASCADE)
-
-
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
@@ -34,6 +29,12 @@ def create_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+
+class FriendRequest(models.Model):
+    id = models.AutoField(primary_key=True)
+    from_user = models.ForeignKey(Profile, related_name="from_user", on_delete=models.CASCADE)
+    to_user = models.ForeignKey(Profile, related_name="to_user", on_delete=models.CASCADE)
 
 
 @receiver(post_save, sender=Profile)
