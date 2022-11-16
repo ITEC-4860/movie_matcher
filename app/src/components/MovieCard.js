@@ -3,7 +3,7 @@ import {movieById, movieCastCrew} from "./MovieComponent";
 import Popup from "reactjs-popup";
 import MoviePage from "./MoviePage";
 
-class InfiniteScrolling extends React.Component {
+class MovieCard extends React.Component {
     constructor(props) {
         super(props);
         this.props = {
@@ -103,4 +103,4 @@ class InfiniteScrolling extends React.Component {
     }
 }
 
-export default InfiniteScrolling;
+export default MovieCard;
