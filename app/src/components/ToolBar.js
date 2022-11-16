@@ -12,7 +12,7 @@ class ToolBar extends React.Component {
         super(props);
 
         this.state = {
-        //   genres: '',
+            //   genres: '',
             //testing purposes VVVV
             genres: 16,
             sort: 'popularity.desc',
@@ -26,16 +26,20 @@ class ToolBar extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-      componentDidMount() {
-        if (this.props.genres !== undefined) {
-               this.updateState('results', <InfiniteScrolling query={this.props.genres} sort={this.state.sort} yearA={this.state.yearA} yearB={this.state.yearB} runtime={this.state.runtime}/>);
+    componentDidMount() {
+        if (this.props.genres) {
+            this.updateState('results', <InfiniteScrolling query={this.props.genres} sort={this.state.sort}
+                                                           yearA={this.state.yearA} yearB={this.state.yearB}
+                                                           runtime={this.state.runtime}/>);
         } // Use this.props.genres to fetch user's preferred genres from backend and put the data into the library and populate infinite scroll
-          }
+    }
 
 
-    handleClick(){
+    handleClick() {
         console.log("Submit Works");
-        this.updateState('results', <InfiniteScrolling query={this.state.genres} sort={this.state.sort} yearA={this.state.yearA} yearB={this.state.yearB} runtime={this.state.runtime}/>);
+        this.updateState('results', <InfiniteScrolling query={this.state.genres} sort={this.state.sort}
+                                                       yearA={this.state.yearA} yearB={this.state.yearB}
+                                                       runtime={this.state.runtime}/>);
     }
 
     handle_change = e => {
@@ -59,124 +63,122 @@ class ToolBar extends React.Component {
 
     render() {
 
-          const handleChange = (val) => this.updateState('genres', val);
+        const handleChange = (val) => this.updateState('genres', val);
         return (
 
 
-            <div >
-                 <p> <strong>Genre </strong> </p>
-                         <ToggleButtonGroup
+            <div>
+                <p><strong>Genre </strong></p>
+                <ToggleButtonGroup
 
-                              type='checkbox'
-                              name='genres'
+                    type='checkbox'
+                    name='genres'
 
-                              value={this.state.genres}
-                              onChange={handleChange}
+                    value={this.state.genres}
+                    onChange={handleChange}
 
-                             className="mb-2">
-        <ToggleButton id="Action" value={28}>
-          Action
-        </ToggleButton>
-        <ToggleButton id="Adventure" value={12}>
-Adventure
-        </ToggleButton>
-        <ToggleButton id="Animation" value={16}>
-Animation
-        </ToggleButton>
+                    className="mb-2">
+                    <ToggleButton id="Action" value={28}>
+                        Action
+                    </ToggleButton>
+                    <ToggleButton id="Adventure" value={12}>
+                        Adventure
+                    </ToggleButton>
+                    <ToggleButton id="Animation" value={16}>
+                        Animation
+                    </ToggleButton>
 
-      <ToggleButton id="Comedy" value={35}>
-Comedy
-        </ToggleButton>
-                                   <ToggleButton id="Crime" value={80}>
-Crime
-        </ToggleButton>
-                                   <ToggleButton id="Documentary" value={99}>
-Documentary
-        </ToggleButton>
-                                   <ToggleButton id="Drama" value={18}>
-Drama
-        </ToggleButton>
-                                   <ToggleButton id="Fantasy" value={14}>
-Family
-        </ToggleButton>
-                                   <ToggleButton id="History" value={36}>
-History
-        </ToggleButton>
-                              <br/>
-                                   <ToggleButton id="Horror" value={27}>
-Horror
-        </ToggleButton>
-                                   <ToggleButton id="Music" value={10402}>
-Music
-        </ToggleButton>
-                                   <ToggleButton id="Mystery" value={9648}>
-Mystery
-        </ToggleButton>
-                                   <ToggleButton id="Romance" value={10749}>
-Romance
-        </ToggleButton>
-                                   <ToggleButton id="ScienceFiction" value={878}>
-Science Fiction
-        </ToggleButton>
+                    <ToggleButton id="Comedy" value={35}>
+                        Comedy
+                    </ToggleButton>
+                    <ToggleButton id="Crime" value={80}>
+                        Crime
+                    </ToggleButton>
+                    <ToggleButton id="Documentary" value={99}>
+                        Documentary
+                    </ToggleButton>
+                    <ToggleButton id="Drama" value={18}>
+                        Drama
+                    </ToggleButton>
+                    <ToggleButton id="Fantasy" value={14}>
+                        Family
+                    </ToggleButton>
+                    <ToggleButton id="History" value={36}>
+                        History
+                    </ToggleButton>
+                    <br/>
+                    <ToggleButton id="Horror" value={27}>
+                        Horror
+                    </ToggleButton>
+                    <ToggleButton id="Music" value={10402}>
+                        Music
+                    </ToggleButton>
+                    <ToggleButton id="Mystery" value={9648}>
+                        Mystery
+                    </ToggleButton>
+                    <ToggleButton id="Romance" value={10749}>
+                        Romance
+                    </ToggleButton>
+                    <ToggleButton id="ScienceFiction" value={878}>
+                        Science Fiction
+                    </ToggleButton>
 
-                                   <ToggleButton id="TVMovie" value={10770}>
-TV Movie
-        </ToggleButton>
-                                   <ToggleButton id="Thriller" value={53}>
-Thriller
-        </ToggleButton>
-                                   <ToggleButton id="War" value={10752}>
-War
-        </ToggleButton>
-                                   <ToggleButton id="Western" value={37}>
-Western
-        </ToggleButton>
-
-
+                    <ToggleButton id="TVMovie" value={10770}>
+                        TV Movie
+                    </ToggleButton>
+                    <ToggleButton id="Thriller" value={53}>
+                        Thriller
+                    </ToggleButton>
+                    <ToggleButton id="War" value={10752}>
+                        War
+                    </ToggleButton>
+                    <ToggleButton id="Western" value={37}>
+                        Western
+                    </ToggleButton>
 
 
-      </ToggleButtonGroup>
- <br/>
+                </ToggleButtonGroup>
+                <br/>
 
 
-     <p> <strong>Sort By </strong> </p>
-               <ToggleButtonGroup
-                         placeholder='Sort by:'
-                      type="radio"
-                         name="sort"
+                <p><strong>Sort By </strong></p>
+                <ToggleButtonGroup
+                    placeholder='Sort by:'
+                    type="radio"
+                    name="sort"
 
-                              value={this.state.sort}
-                              onChange={handleChange}
-                         defaultValue={1}>
+                    value={this.state.sort}
+                    onChange={handleChange}
+                    defaultValue={1}>
 
                     <ToggleButton id="year" value={1}>
-         Year
-        </ToggleButton>
-        <ToggleButton id="popularity" value={2}>
-         Popularity
-        </ToggleButton>
-                      <ToggleButton id="director" value={3}>
-          Director
-        </ToggleButton>
-                      <ToggleButton id="cast" value={4}>
-          Cast
-        </ToggleButton>
+                        Year
+                    </ToggleButton>
+                    <ToggleButton id="popularity" value={2}>
+                        Popularity
+                    </ToggleButton>
+                    <ToggleButton id="director" value={3}>
+                        Director
+                    </ToggleButton>
+                    <ToggleButton id="cast" value={4}>
+                        Cast
+                    </ToggleButton>
 
 
                     {/* value={this.state.sort}*/}
                     {/*onChange={this.handle_change}*/}
 
-      </ToggleButtonGroup>
+                </ToggleButtonGroup>
 
                 <br/>
-                   <p> <strong>Value for start year </strong> </p>
+                <p><strong>Value for start year </strong></p>
                 <input
                     placeholder='Value for start year'
                     type='text'
                     name='yearA'
                     value={this.state.yearA}
                     onChange={this.handle_change}/>
-                   <p> <strong>Value for end year </strong> </p>
+                <p><strong>Value for end year </strong></p>
                 <input
                     placeholder='Value for end year'
                     type='text'
@@ -184,7 +186,7 @@ Western
                     value={this.state.yearB}
                     onChange={this.handle_change}/>
 
- <br/>
+                <br/>
                 {/*<label className="form-label" htmlFor="range">Release date range</label>*/}
                 {/*<div className="range">*/}
                 {/*    <input*/}
