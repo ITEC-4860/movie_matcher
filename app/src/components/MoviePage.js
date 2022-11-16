@@ -21,7 +21,7 @@ class MoviePage extends React.Component {
     }
 
     handleClick(){
-        alert( this.state.items.title + " was added to INSERT_LIST_TITLE_HERE");
+        alert("You and testUser Matched: " + this.state.items.title);
     }
 
     componentDidMount() {
@@ -136,28 +136,6 @@ class MoviePage extends React.Component {
         }
     }
 
-    dropDown(){
-        return(
-            <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                    Pick a List
-                </button>
-                <ul className="dropdown-menu">
-                    <li>
-                        <button className="dropdown-item" type="button">Action</button>
-                    </li>
-                    <li>
-                        <button className="dropdown-item" type="button">Another action</button>
-                    </li>
-                    <li>
-                        <button className="dropdown-item" type="button">Something else here</button>
-                    </li>
-                </ul>
-            </div>
-        );
-    }
-
     render() {
         return (
                 <div className={"MoviePageContainer"}>
@@ -173,8 +151,7 @@ class MoviePage extends React.Component {
                             <h5>Director: {this.getDirector()}</h5>
                         </div>
                         <div className={'dropdownButton'}>
-                            <button onClick={this.handleClick}> Add to List </button>
-                            {this.dropDown()}
+                            <button onClick={this.handleClick}> Add to Match </button>
                         </div>
                         <br/>
                     </div>

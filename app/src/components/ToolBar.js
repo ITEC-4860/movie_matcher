@@ -1,5 +1,4 @@
 import React from "react";
-import "../MoviePage.css";
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ToggleButton from 'react-bootstrap/ToggleButton';

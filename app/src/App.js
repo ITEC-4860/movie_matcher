@@ -125,8 +125,14 @@ class App extends Component {
             case 'library':
                 form = <ToolBar/>;
                 break;
+            case 'libraryMatcher':
+                form = <ToolBar genres={16}/>;
+                break;
             case 'profile':
-                form = <Profile username={this.state.username} image={'https://c8.alamy.com/comp/GKBXCP/sad-old-man-GKBXCP.jpg'} favMovies={[200, 15, 500, 12, 76, 17, 13, 35, 11, 16, 25, 137]} favGenres={["Action", "Comedy", "Thriller"]}/>;
+                form = <Profile username={this.state.username}
+                                image={'https://c8.alamy.com/comp/GKBXCP/sad-old-man-GKBXCP.jpg'}
+                                favMovies={[200, 15, 500, 12, 76, 17, 13, 35, 11, 16, 25, 137]}
+                                favGenres={["Action", "Comedy", "Thriller"]}/>;
                 break;
             default:
                 form = null;
@@ -140,13 +146,11 @@ class App extends Component {
                     display_form={this.display_form}
                     handle_logout={this.handle_logout}
                 />
-                    <div style={{paddingTop: "6.5%"}}>
                 <h3>
                     {this.state.logged_in
                         ? `Hello, ${this.state.username}`
                         : 'Please Log In'}
                 </h3>
-                    </div>
                 </span>
                 <span className={"form"}>
                 {form}

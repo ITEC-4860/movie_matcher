@@ -14,6 +14,7 @@ function Nav(props) {
         <ListGroup className={"navList"} horizontal={true}>
             <ListGroupItem action={true} onClick={() => props.display_form('friends')}>Friends</ListGroupItem>
             <ListGroupItem action={true} onClick={() => props.display_form('library')}>Library</ListGroupItem>
+            <ListGroupItem action={true} onClick={() => props.display_form('libraryMatcher')}>Match</ListGroupItem>
             <ListGroupItem action={true} onClick={() => props.display_form('profile')}>Profile</ListGroupItem>
             <ListGroupItem action={true} onClick={props.handle_logout}>Logout</ListGroupItem>
         </ListGroup>
