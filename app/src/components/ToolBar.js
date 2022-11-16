@@ -27,8 +27,8 @@ class ToolBar extends React.Component {
     }
 
       componentDidMount() {
-        if (this.state.genres !== undefined) {
-               this.updateState('results', <InfiniteScrolling query={this.state.genres} sort={this.state.sort} yearA={this.state.yearA} yearB={this.state.yearB} runtime={this.state.runtime}/>);
+        if (this.props.genres !== undefined) {
+               this.updateState('results', <InfiniteScrolling query={this.props.genres} sort={this.state.sort} yearA={this.state.yearA} yearB={this.state.yearB} runtime={this.state.runtime}/>);
         } // Use this.props.genres to fetch user's preferred genres from backend and put the data into the library and populate infinite scroll
           }
 
