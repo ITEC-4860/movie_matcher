@@ -107,6 +107,16 @@ class ToolBar extends React.Component {
                         History
                     </ToggleButton>
                     <br/>
+                </ToggleButtonGroup><br/>
+                <ToggleButtonGroup
+
+                    type='checkbox'
+                    name='genres'
+
+                    value={this.state.genres}
+                    onChange={handleChange}
+
+                    className="mb-2">
                     <ToggleButton id="Horror" value={27}>
                         Horror
                     </ToggleButton>
@@ -135,8 +145,6 @@ class ToolBar extends React.Component {
                     <ToggleButton id="Western" value={37}>
                         Western
                     </ToggleButton>
-
-
                 </ToggleButtonGroup>
                 <br/>
 
