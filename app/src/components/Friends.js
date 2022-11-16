@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 
 function Friend(props) {
     // Friend is the actual friend data. Remove and accept are possible functions passed into the Friend object for use in the buttons
-    const {friend, remove, accept} = props
+    const {friend, remove, accept, sendFriendRequest} = props
     return (
         <div>
             {friend.accepted ? (
@@ -18,6 +18,10 @@ function Friend(props) {
                     <Button onClick={() => remove(friend)}>Ignore</Button>
                 </span>
             )}
+
+            <span>
+                <Button onClick={() => sendFriendRequest(to_user)}>Add Friend</Button>
+            </span>
         </div>
     )
 }
@@ -43,14 +47,47 @@ class Friends extends Component {
     componentDidMount() {
         if (this.props.username !== undefined) {
             // TODO: Use this.props.username to fetch user friends and requests from backend and put the data into the friends state
+            fetch('http://localhost:8000/api/current_user/friends', {
+                headers: {
+                    Authorization: `Bearer  ${localStorage.getItem('access')}`
+                }
+            })
+                .then((res) => {
+                    if (res.status === 200) {
+                        res.json().then((data) => {
+                            let friendSet = ""
+                            data.friends.forEach(friend => {
+                                friendSet += "{username: " + friend.username + "}, "
+                            })
+                            this.setState({friends: friendSet})
+                        })
+                    } else {
+                        //  TODO: Not sure what form we're displaying here
+                        this.setState({displayed_form: 'friends'})
+                    }
+                });
         }
     }
 
     sendFriendRequest() {
         // TODO: Fetch to backend to send a friend request to another user. That user should have current user added to their friends with the 'accepted' boolean false
+        if () {
+            fetch('http://localhost:8000/api/current_user/send_friend_request', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access')}`
+                }
+            })
+                .then((res) => {
+                    if (res.status === 200) {
+                        res.json().then((data) => {
+
+                        })
+                    }
+                })
+        }
     }
 
-    // This should be used as a friend request acceptance tool
+// This should be used as a friend request acceptance tool
     addFriend(friend) {
         // TODO: Fetch to backend to add friend by username
         const accept = {

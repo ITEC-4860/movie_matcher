@@ -20,6 +20,13 @@ class Profile(models.Model):
         return self.user.username
 
 
+class FriendList(models.Model):
+    id = models.AutoField(primary_key=True)
+    profile_id = models.ForeignKey(Profile.id, related_name="profile_id", on_delete=models.CASCADE)
+    friends = models.ManyToManyField(Profile, related_name="friends", blank=True)
+    accepted = models.BooleanField(default=False)
+
+
 class FriendRequest(models.Model):
     from_user = models.ForeignKey(Profile, related_name="from_user", on_delete=models.CASCADE)
     to_user = models.ForeignKey(Profile, related_name="to_user", on_delete=models.CASCADE)
