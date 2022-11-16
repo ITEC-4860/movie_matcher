@@ -26,8 +26,23 @@ input {
 }
 
 .form {
+  .friend {
+    font-size: x-large;
+  }
+  .signUp {
+    font-size: x-large;
+  }
+  .login {
+    font-size: x-large;
+  }
+  h2 {
+    font-size: xxx-large;
+  }
   div {
   margin-left: 0.5%;
+  }
+  form {
+    margin-left: 0.5%;
   }
 }
 
@@ -39,14 +54,16 @@ input {
   justify-content: left;
   align-items: center;
   h3 {
-    margin-left: 0.5%;
+    font-size: 23px;
+    margin-left: 1%;
   }
   img {
     height: auto;
     padding: 0;
-    width: 3.5%;
+    width: 5%;
   }
   button {
+    font-size: 23px;
     color: white;
     background-color: #474747;
   }

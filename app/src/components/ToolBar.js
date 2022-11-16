@@ -4,17 +4,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import InfiniteScrolling from "./InfiniteScrolling";
+import {MDBRange} from 'mdb-react-ui-kit';
 
 class ToolBar extends React.Component {
     constructor(props) {
         super(props);
-     //   let test = { genres: "16" };
+        //   let test = { genres: "16" };
 
 
         this.state = {
-        //   genres: '',
+            //   genres: '',
             //testing purposes VVVV
-            genres: 16,
+            genres: '',
             sort: 'popularity.desc',
             yearA: 1895,
             yearB: new Date().getFullYear(),
@@ -26,18 +27,22 @@ class ToolBar extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-      componentDidMount() {
-        if (this.state.genres !== undefined) {
-               this.updateState('results', <InfiniteScrolling query={this.state.genres} sort={this.state.sort} yearA={this.state.yearA} yearB={this.state.yearB} runtime={this.state.runtime}/>);
+    componentDidMount() {
+        if (this.props.genres !== undefined) {
+            this.updateState('results', <InfiniteScrolling query={this.props.genres} sort={this.state.sort}
+                                                           yearA={this.state.yearA} yearB={this.state.yearB}
+                                                           runtime={this.state.runtime}/>);
 
         }
-            // Use this.props.genres to fetch user's preferred genres from backend and put the data into the library and populate infinite scroll
+        // Use this.props.genres to fetch user's preferred genres from backend and put the data into the library and populate infinite scroll
     }
 
 
-    handleClick(){
+    handleClick() {
         console.log("Submit Works");
-        this.updateState('results', <InfiniteScrolling query={this.state.genres} sort={this.state.sort} yearA={this.state.yearA} yearB={this.state.yearB} runtime={this.state.runtime}/>);
+        this.updateState('results', <InfiniteScrolling query={this.state.genres} sort={this.state.sort}
+                                                       yearA={this.state.yearA} yearB={this.state.yearB}
+                                                       runtime={this.state.runtime}/>);
     }
 
     handle_change = e => {
@@ -64,130 +69,134 @@ class ToolBar extends React.Component {
         const handleSortChange = (val) => this.updateState('sort', val);
         return (
             <div className={'ToolBar'}>
-                <p><strong>Genre </strong></p>
-                <ToggleButtonGroup
-                    type='checkbox'
-                    name='genres'
-                    value={this.state.genres}
-                    onChange={handleGenreChange}
-                    className="mb-2">
-                    <ToggleButton id="Action" value={28}>
-                        Action
-                    </ToggleButton>
-                    <ToggleButton id="Adventure" value={12}>
-                        Adventure
-                    </ToggleButton>
-                    <ToggleButton id="Animation" value={16}>
-                        Animation
-                    </ToggleButton>
+                <div className={"col-3"}>
+                    <p><strong>Genre </strong></p>
+                    <ToggleButtonGroup
+                        type='checkbox'
+                        name='genres'
+                        value={this.state.genres}
+                        onChange={handleGenreChange}
+                        className="mb-2">
+                        <ToggleButton id="Action" value={28}>
+                            Action
+                        </ToggleButton>
+                        <ToggleButton id="Adventure" value={12}>
+                            Adventure
+                        </ToggleButton>
+                        <ToggleButton id="Animation" value={16}>
+                            Animation
+                        </ToggleButton>
 
-                    <ToggleButton id="Comedy" value={35}>
-                        Comedy
-                    </ToggleButton>
-                    <ToggleButton id="Crime" value={80}>
-                        Crime
-                    </ToggleButton>
-                    <ToggleButton id="Documentary" value={99}>
-                        Documentary
-                    </ToggleButton>
-                    <ToggleButton id="Drama" value={18}>
-                        Drama
-                    </ToggleButton>
-                    <ToggleButton id="Fantasy" value={14}>
-                        Family
-                    </ToggleButton>
-                    <ToggleButton id="History" value={36}>
-                        History
-                    </ToggleButton>
+                        <ToggleButton id="Comedy" value={35}>
+                            Comedy
+                        </ToggleButton>
+                        <ToggleButton id="Crime" value={80}>
+                            Crime
+                        </ToggleButton>
+                        <ToggleButton id="Documentary" value={99}>
+                            Documentary
+                        </ToggleButton>
+                        <ToggleButton id="Drama" value={18}>
+                            Drama
+                        </ToggleButton>
+                        <ToggleButton id="Fantasy" value={14}>
+                            Family
+                        </ToggleButton>
+                        <ToggleButton id="History" value={36}>
+                            History
+                        </ToggleButton>
+                        <br/>
+                        <ToggleButton id="Horror" value={27}>
+                            Horror
+                        </ToggleButton>
+                        <ToggleButton id="Music" value={10402}>
+                            Music
+                        </ToggleButton>
+                        <ToggleButton id="Mystery" value={9648}>
+                            Mystery
+                        </ToggleButton>
+                        <ToggleButton id="Romance" value={10749}>
+                            Romance
+                        </ToggleButton>
+                        <ToggleButton id="ScienceFiction" value={878}>
+                            Science Fiction
+                        </ToggleButton>
+
+                        <ToggleButton id="TVMovie" value={10770}>
+                            TV Movie
+                        </ToggleButton>
+                        <ToggleButton id="Thriller" value={53}>
+                            Thriller
+                        </ToggleButton>
+                        <ToggleButton id="War" value={10752}>
+                            War
+                        </ToggleButton>
+                        <ToggleButton id="Western" value={37}>
+                            Western
+                        </ToggleButton>
+                    </ToggleButtonGroup>
+                    <br/><p><strong>Sort By </strong></p>
+                    <ToggleButtonGroup
+                        placeholder='Sort by:'
+                        type="radio"
+                        name="sort"
+                        value={this.state.sort}
+                        onChange={handleSortChange}
+                        defaultValue={'popularity.desc'}>
+                        <ToggleButton id="year" value={'release_date.desc'}>
+                            Year
+                        </ToggleButton>
+                        <ToggleButton id="popularity" value={'popularity.desc'}>
+                            Popularity
+                        </ToggleButton>
+                        {/* value={this.state.sort}*/}
+                        {/*onChange={this.handle_change}*/}
+                    </ToggleButtonGroup>
                     <br/>
-                    <ToggleButton id="Horror" value={27}>
-                        Horror
-                    </ToggleButton>
-                    <ToggleButton id="Music" value={10402}>
-                        Music
-                    </ToggleButton>
-                    <ToggleButton id="Mystery" value={9648}>
-                        Mystery
-                    </ToggleButton>
-                    <ToggleButton id="Romance" value={10749}>
-                        Romance
-                    </ToggleButton>
-                    <ToggleButton id="ScienceFiction" value={878}>
-                        Science Fiction
-                    </ToggleButton>
+                    <p><strong>Value for start year </strong></p>
+                    <input
+                        placeholder='Value for start year'
+                        type='text'
+                        name='yearA'
+                        value={this.state.yearA}
+                        onChange={this.handle_change}/>
+                    <p><strong>Value for end year </strong></p>
+                    <input
+                        placeholder='Value for end year'
+                        type='text'
+                        name='yearB'
+                        value={this.state.yearB}
+                        onChange={this.handle_change}/>
+                    <br/>
+                    {/*<label className="form-label" htmlFor="range">Release date range</label>*/}
+                    {/*<div className="range">*/}
+                    {/*    <input*/}
+                    {/*        value={this.state.range}*/}
+                    {/*        onChange={handleChange}*/}
 
-                    <ToggleButton id="TVMovie" value={10770}>
-                        TV Movie
-                    </ToggleButton>
-                    <ToggleButton id="Thriller" value={53}>
-                        Thriller
-                    </ToggleButton>
-                    <ToggleButton id="War" value={10752}>
-                        War
-                    </ToggleButton>
-                    <ToggleButton id="Western" value={37}>
-                        Western
-                    </ToggleButton>
-                </ToggleButtonGroup>
-                <br/><p><strong>Sort By </strong></p>
-                <ToggleButtonGroup
-                    placeholder='Sort by:'
-                    type="radio"
-                    name="sort"
-                    value={this.state.sort}
-                    onChange={handleSortChange}
-                    defaultValue={'popularity.desc'}>
-                    <ToggleButton id="year" value={'release_date.desc'}>
-                        Year
-                    </ToggleButton>
-                    <ToggleButton id="popularity" value={'popularity.desc'}>
-                        Popularity
-                    </ToggleButton>
-                    {/* value={this.state.sort}*/}
-                    {/*onChange={this.handle_change}*/}
-                </ToggleButtonGroup>
-                <br/>
-                <p><strong>Value for start year </strong></p>
-                <input
-                    placeholder='Value for start year'
-                    type='text'
-                    name='yearA'
-                    value={this.state.yearA}
-                    onChange={this.handle_change}/>
-                <p><strong>Value for end year </strong></p>
-                <input
-                    placeholder='Value for end year'
-                    type='text'
-                    name='yearB'
-                    value={this.state.yearB}
-                    onChange={this.handle_change}/>
-                <br/>
-                {/*<label className="form-label" htmlFor="range">Release date range</label>*/}
-                {/*<div className="range">*/}
-                {/*    <input*/}
-                {/*        value={this.state.range}*/}
-                {/*        onChange={handleChange}*/}
+                    {/*        placeholder='Date Range'*/}
+                    {/*        type="range"*/}
+                    {/*         name='range'*/}
+                    {/*        className="form-range"*/}
+                    {/*        min="1895" max="2023" id="range"*/}
+                    {/*    />*/}
 
-                {/*        placeholder='Date Range'*/}
-                {/*        type="range"*/}
-                {/*         name='range'*/}
-                {/*        className="form-range"*/}
-                {/*        min="1895" max="2023" id="range"*/}
-                {/*    />*/}
-
-                {/*</div>*/}
-                <label htmlFor="runtime" className="form-label">Maximum Length / Runtime in minutes </label>
-                <input
-                    type="range"
-                    min="0"
-                    max="240"
-                    defaultValue='100'
-                    value={this.state.runtime}
-                    onChange={this.handle_change}
-                />
-                {'Max Runtime:' + this.state.runtime}
-                <br/>
-                <button onClick={this.handleClick}>Submit</button>
+                    {/*</div>*/}
+                    <label htmlFor="runtime" className="form-label">Maximum Length / Runtime in minutes </label>
+                    <MDBRange
+                        type="range"
+                        name='runtime'
+                        defaultValue='120'
+                        min="0"
+                        max="240"
+                        step='1'
+                        value={this.state.runtime}
+                        onChange={this.handle_change}
+                    />
+                    {'Max Runtime:' + this.state.runtime}
+                    <br/>
+                    <button onClick={this.handleClick}>Submit</button>
+                </div>
                 {this.state.results}
             </div>
         );
