@@ -17,7 +17,7 @@ class App extends Component {
             profilePic: '',
             favMovies: [],
             favGenres: [],
-            search: '',
+            genres: '',
             sort: '',
             yearA: '',
             yearB: '',
@@ -44,7 +44,7 @@ class App extends Component {
 
     movieMatch = (information) => {
         this.setState({
-            search: information.search
+            genres: information.genres
         });
         this.display_form("matchLibrary");
     }
@@ -133,7 +133,7 @@ class App extends Component {
                 form = <ToolBar/>;
                 break;
             case 'matchLibrary':
-                form = <ToolBar genres={this.state.search}/>;
+                form = <ToolBar genres={this.state.genres}/>;
                 break;
             case 'profile':
                 form = <Profile username={this.state.username}
